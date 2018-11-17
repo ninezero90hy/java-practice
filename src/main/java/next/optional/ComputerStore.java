@@ -5,24 +5,21 @@ import next.optional.Computer.USB;
 
 import java.util.Optional;
 
+import static java.util.Optional.of;
+
 public class ComputerStore {
-	public static final String UNKNOWN_VERSION = "UNKNOWN";
-	
-	public static String getVersion(Computer computer) {
-		String version = UNKNOWN_VERSION;
-		if(computer != null){
-		  Soundcard soundcard = computer.getSoundcard();
-		  if(soundcard != null){
-		    USB usb = soundcard.getUsb();
-		    if(usb != null){
-		      version = usb.getVersion();
-		    }
-		  }
-		}
-		return version;
-	}
-	
-	public static String getVersionOptional(Computer computer) {
-		return null;
-	}
+
+    public static final String UNKNOWN = "UNKNOWN";
+
+    public static Optional<String> getVersion(Computer computer) {
+        return of(Optional.ofNullable(computer)
+                .flatMap(Computer::getSoundcard)
+                .flatMap(Soundcard::getUsb)
+                .flatMap(USB::getVersion)
+                .orElse(UNKNOWN));
+    }
+
+    public static String getVersionOptional(Computer computer) {
+        return null;
+    }
 }
