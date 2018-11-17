@@ -1,6 +1,7 @@
 package next.fp;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -26,11 +27,6 @@ public class Lambda {
         }).start();
     }
 
-    @FunctionalInterface
-    private interface Conditional {
-        boolean test(Integer number);
-    }
-
     public static int sumAll(List<Integer> numbers) {
         return sum(numbers, number -> true);
     }
@@ -43,10 +39,10 @@ public class Lambda {
         return sum(numbers, number -> number > 3);
     }
 
-    private static int sum(final List<Integer> numbers, final Conditional conditional) {
+    private static int sum(final List<Integer> numbers, final Predicate<Integer> predicate) {
         int total = 0;
         for (int number : numbers) {
-            if (conditional.test(number)) {
+            if (predicate.test(number)) {
                 total += number;
             }
         }
