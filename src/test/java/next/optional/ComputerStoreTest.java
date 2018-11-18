@@ -14,8 +14,7 @@ public class ComputerStoreTest {
         String version = "pobi's usb";
         Soundcard soundcard = new Soundcard(new USB(version));
         Computer computer = new Computer(soundcard);
-        Optional<String> version1 = ComputerStore.getVersion(computer);
-        version1.ifPresent(v -> assertThat(v).isEqualTo(version));
+        assertThat(ComputerStore.getVersion(computer)).isEqualTo(version);
     }
 
     @Test

@@ -9,8 +9,8 @@ public class Computer {
 		this.soundcard = soundcard;
 	}
 	
-	public Optional<Soundcard> getSoundcard() {
-		return Optional.ofNullable(soundcard);
+	public Soundcard getSoundcard() {
+		return soundcard;
 	}
 	
 	public static class Soundcard {
@@ -21,8 +21,8 @@ public class Computer {
 			this.usb = usb;
 		}
 		
-		public Optional<USB> getUsb() {
-			return Optional.ofNullable(this.usb);
+		public USB getUsb() {
+			return this.usb;
 		}
 	}
 
@@ -34,8 +34,8 @@ public class Computer {
 			this.version = version;
 		}
 
-		public Optional<String> getVersion() {
-			return Optional.ofNullable(this.version);
+		public String getVersion() {
+			return this.version;
 		}
 	}
 }
